@@ -1,0 +1,83 @@
+<footer class="oh footer">
+	<div id="footer_app">
+		<div>
+		    <div class="container">
+		        <div class="col-md-12">
+		            <p class="xiaoshi">
+		            <a href="index.html">&nbsp;&nbsp;&nbsp;&nbsp;首页 &nbsp;&nbsp;&nbsp;&nbsp;</a>|
+						<a href="#" title="新闻中心">&nbsp;&nbsp;&nbsp;&nbsp;新闻中心&nbsp;&nbsp;&nbsp;&nbsp;</a>|
+						<a href="#" title="人才招聘">&nbsp;&nbsp;&nbsp;&nbsp;人才招聘&nbsp;&nbsp;&nbsp;&nbsp;</a>|
+						<a href="#" title="案例展示">&nbsp;&nbsp;&nbsp;&nbsp;案例展示&nbsp;&nbsp;&nbsp;&nbsp;</a>|
+						<a href="#" title="产品介绍">&nbsp;&nbsp;&nbsp;&nbsp;产品介绍&nbsp;&nbsp;&nbsp;&nbsp;</a>|
+						<a href="#" title="关于我们">&nbsp;&nbsp;&nbsp;&nbsp;关于我们&nbsp;&nbsp;&nbsp;&nbsp;</a>
+					</p>
+		            <p class="ssss">Copyright &copy; 2017－2018 All Rights Reserved 版权所有大理雪域印象生物科技有限公司</p>
+		            <p>地址：&nbsp;&nbsp;&nbsp;&nbsp;云南省大理州大理经济开发区金贝小区43栋1单元2楼 &nbsp;&nbsp;&nbsp;&nbsp; 技术支持:<a href="#" target="_blank">&nbsp;&nbsp;&nbsp;&nbsp;纯粹网络科技</a> </p>
+		        </div>
+		    </div>
+		</div>
+	</div>
+</footer>
+<script type="text/javascript">
+
+	var footer_app = new Vue({
+	    el: '#footer_app',
+	    data:function(){
+	        return {
+	        	is_toggle:false,
+				qrImg:[],
+				address:'',
+				phone:''
+	        }
+	    },
+	    created:function () {
+	        var self = this;
+			self.getMainData()
+	        
+			
+	    },
+	    methods: {
+			
+			getMainData: function(id) {
+				var self = this;
+				var postData = {};
+				postData.searchItem = {
+					thirdapp_id:2,
+					title:'联系我们'
+				};
+				postData.getAfter = {
+					child: {
+						tableName: 'Label',
+						middleKey: 'id',
+						key: 'parentid',
+						searchItem: {
+							status: 1,
+						},
+						condition: '='
+					},
+				};
+
+				var callback = (res) => {
+					console.log('getMainData', res);
+					self.mainData = res.info.data[0];
+					// for (var i = self.mainData['child'].length - 1; i >= 0; i--) {
+					// 	
+					// 	if(self.mainData['child'][i].title=="地址"){
+					// 		self.address = self.mainData['child'][i].description
+					// 	};
+					// 	if(self.mainData['child'][i].title=="电话"){
+					// 		self.phone = self.mainData['child'][i].description
+					// 	};
+					// 	if(self.mainData['child'][i].title=="二维码"){
+					// 		self.qrImg = self.mainData['child'][i].mainImg
+					// 	};
+					// }
+
+				};
+				window.base.labelGet(postData, callback);
+			},
+	        
+	    	
+	    }
+	});   
+</script>

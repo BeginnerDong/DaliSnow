@@ -1,0 +1,134 @@
+
+			
+			<div class="col-md-10 col-xs-12 mainproduct r-xqcontbox">
+				<p><img src="images/about1.jpg" alt=""></p>
+				<p>陕西广腾达工贸有限公司，坐落于陕西省西咸新区，已通过ISO9001质量管理体系认证，具有先进的计量手段和严格的质量管理制度，依靠科技人才，科学管理，先进的技术，多元化产品及良好的服务，树立自己的企业形象。是诸多同行业生产厂家中，起步早、技术力量雄厚、有专业化研发团队的企业集团。公司具有先进的管理模式，及一流的售后跟踪服务。产品广泛用于电子信息业、汽车的制造业、光电企业、机械业、轻工业、邮政、食品、医药、家电、广告装潢、文化用品等行业的产品销售包装、邮政包装等。</p>
+				<p>陕西广腾达工贸有限公司是一家国内专业化的塑料中空板制品企业，公司成立于2016年，专业生产全系列材质性能的PP中空板（万通板、PP瓦楞板、PP蜂窝板、塑料中空板）与PE中空板（PE万通板，PE双层保温膜，PE阳光板，PE采光板）；产品如：PP中空板，封边中空板（胶条封边或热熔封边），玻璃瓶中空板垫板、玻璃瓶中空板托盘，中空板周转箱, 中空板折叠箱，中空板托盘，中空板刀卡，中空板广告板，中空板盒子，防静电中空板,导电中空板,阻燃中空板，抗静电中空板，万通板,塑料瓦楞中空板，塑胶中空板,塑料板，静电处理中空板（电晕中空板，高频中空板）等等一系列塑料中空板产品。高质量低成本。欢迎来电咨询，谢谢！</p>
+				<p>
+					陕西广腾达工贸有限公司<br/>
+					电话：029-33577183<br/>
+					手机：13689184930  18191142910<br/>
+					传真：029-335577182<br/>
+					E-mail：zxj58838@qq.com<br/>
+					网址：www.gtdsuliao.com<br/>
+					公司地址：陕西省西咸新区沣东新城沣东街道办事处黄家寨村铁道北<br/>
+				</p>
+				
+			</div>
+
+
+<script type="text/javascript">
+	var contentOne_app = new Vue({
+	    el: '#contentOne_app',
+	    data:function(){
+	        return {
+	        	banner_index:0,
+	        	is_toggle:false,
+				is_show:false,
+				contentData:[],
+				labelData:{
+					title:"新闻中心"
+				},
+					
+				allPages:'',
+				pageArray:[],
+				o_paginate:{
+					count: 0, 
+				    currentPage: 1, 
+				    pagesize:10, 
+				    is_page: true, 
+				},
+				paginate: { 
+				    count: 0, 
+				    currentPage: 1, 
+				    pagesize:10, 
+				    is_page: true, 
+				},
+				currentId:0,
+				currentIndex:0,
+				currentTitle:'',
+				currentUrl:''
+
+	        }
+	    },
+		created:function () {
+		    var self = this;
+		    var currentUrl = window.base.GetUrlRelativePath();
+		
+			var reg = /\/([^\/]+)\.html/i;
+			if(reg.exec(currentUrl)&&reg.exec(currentUrl)[0]){
+				self.currentUrl = reg.exec(currentUrl)[0];
+			}else{
+				self.currentUrl = '/index.html';
+			};
+			console.log('self.currentUrl',self.currentUrl)
+			//window.base.bus.$emit('from_contentTwo',{});
+			window.base.bus.$on('to_contentTwo',(res)=>{
+			console.log('to_contentTwo',res)	
+		    	this.to_contentTwo(res);
+		    });
+		},
+	    methods: {
+
+	    	labelChange:function(id,index){
+	    		var self = this;
+	    		self.currentId = id;
+	    		self.currentIndex = index;
+	    		self.currentTitle = self.labelData['child'][index].title;
+	    		self.getMainData(true)
+	    	},
+
+	    	to_contentOne:function(res){
+	    		var self = this;
+	    		if(res.labelData){
+	        		self.labelData = res.labelData;
+	        		self.currentId = self.labelData['child'][0].id;
+	        		self.currentTitle = self.labelData['child'][0].title;
+	        		self.getMainData()
+	        	};
+	        	if(res.paginate){
+	        		self.o_paginate = res.paginate;
+	        		self.paginate = self.o_paginate;
+	        	};
+	    	},
+
+			getMainData: function(isNew){
+			    var self = this;
+			    if(isNew){
+			    	self.paginate = self.o_paginate;
+			    	self.contentData = [];
+			    };
+			    var postData = {};
+			    postData.paginate = window.base.cloneForm(self.paginate);
+		    	postData.searchItem = {
+			    	thirdapp_id:2,
+			    	menu_id:self.currentId
+			    };
+			    var callback = function(res) { 
+			        self.contentData.push.apply(self.contentData,res.info.data);
+			        self.paginate['count'] = res.info.total;
+			        window.base.computePageArr(self);
+			    };
+			    window.base.articleList(postData, callback);
+			},
+	        
+	    	changePage:function(e) {
+				var self = this;
+				var dataSet = window.base.getDataSet(e);
+				window.base.changePage(dataSet, self);
+				self.getMainData(true);
+			},
+
+			linkTo:function(e) {
+				var self = this;
+				console.log(e);
+				self.linkPage = window.base.getDataSet(e).page;
+				var res = window.base.linkTo(self);
+				if(res){
+					self.getMainData(true);
+				};	
+			},
+	
+	    }
+	});
+</script>

@@ -1,0 +1,111 @@
+
+<div id="header_app" class="bgc-white">
+	<header>
+		<div class="hedxiaoshi">
+			<div class="container">
+				<span>欢迎光临大理雪域印象生物科技有限公司</span>
+				<div class="fr">网站总点击数：<span class="fs20">123</span>次</div>
+			</div>
+		</div>
+		<div class="navbar navbar-inverse navbar-fixed-top" role="navigation" id="menu-nav">
+			<div class="container ">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+						<span class="sr-only">切换导航</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<a href="index.html"><img src="images/logo1.png" class="navbar-brand"></a>
+				</div>
+				<div class="navbar-collapse collapse navbar-right">
+					<ul class="nav navbar-nav">
+						<li :class="currentUrl=='/index.html'?'active':''"><a href="index.html" title="网站首页">网站首页</a></li>
+						<li :class="currentUrl=='/newsCenter.html'?'active':''"><a href="newsCenter.html" title="新闻中心"> 新闻中心</a></li>
+						<li :class="currentUrl=='/recruit.html'?'active':''"><a href="recruit.html" title="人才招聘"> 人才招聘</a></li>
+						<li :class="currentUrl=='/caseShow.html'?'active':''"><a href="caseShow.html" title="案例展示"> 案例展示</a></li>
+						<li :class="currentUrl=='/productIntro.html'?'active':''"><a href="productIntro.html" title="产品介绍"> 产品介绍</a></li>
+						<li :class="currentUrl=='/aboutUs.html'?'active':''"><a href="aboutUs.html" title="关于我们"> 关于我们</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</header>
+
+</div>
+
+
+<script type="text/javascript">
+
+	var header_app = new Vue({
+	    el: '#header_app',
+	    data:function(){
+	        return {
+	        	is_toggle:false,
+				shownav:true,
+				currentUrl:''
+	        }
+	    },
+	    created:function () {
+	        var self = this;
+			var currentUrl = window.base.GetUrlRelativePath();
+		
+			var reg = /\/([^\/]+)\.html/i;
+			if(reg.exec(currentUrl)&&reg.exec(currentUrl)[0]){
+				self.currentUrl = reg.exec(currentUrl)[0];
+			}else{
+				self.currentUrl = '/index.html';
+			};
+			console.log('self.currentUrl',self.currentUrl)
+	        
+			
+	    },
+	    methods: {
+			
+			toggleMenu:function(e){
+			    var self = this;
+			    self.is_toggle = !self.is_toggle;
+				var scrollTop = document.documentElement.scrollTop||document.body.scrollTop;
+				var navigation = document.getElementById('navigation');
+				if(scrollTop<100){
+					if(self.is_toggle){
+						$("#navigation").css('background','rgb(0, 0, 0,0.6)');
+					}else{
+						$("#navigation").css('background','none');
+					};
+				};	
+			},
+			// topNavBtn:function(){
+			// 	if($(".indNavbar .list").css('display')=='none'){
+			// 		$(".indNavbar .list").show()
+			// 	}else{
+			// 		$(".indNavbar .list").hide()
+			// 	}
+			// },
+	        
+	    	changeHeaderStyle: function(){
+	    		var self = this;
+	    		var scrollTop = document.documentElement.scrollTop||document.body.scrollTop;
+	    		var navigation = document.getElementById('navigation');
+					if(scrollTop>=100){
+						$("#navigation").css('position','fixed');
+						$("#navigation").addClass('animated.faster  slideInDown delay-0.1s');
+						console.log('is_toggle-before08',self.is_toggle)
+						if(!self.is_toggle){
+							navigation.addEventListener('animationend', function() {
+								$("#navigation").css('background-color','hsla(0, 0%, 0%, 0.6)');
+							});
+						};
+					}else{          //恢复正常
+						$("#navigation").css('position','absolute');
+						if(!self.is_toggle){
+							$("#navigation").css('background','none');
+							$("#navigation").css('opacity','1');
+						};
+						$("#navigation").removeClass('animated.faster  slideInDown delay-0.1s');
+					}			
+	    	}
+	    }
+	});   
+</script>
+

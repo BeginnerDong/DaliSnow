@@ -1,0 +1,307 @@
+<div id="contentOne_app" style="padding-bottom: 30px;">
+	<div class="container pubcontlis" style="min-height: 70%;" >
+		<div class="row">
+			<div class="col-md-12 default"> <img src="images/s-ban1.jpg" width="100%" height="100%"></div>
+			<ol class="breadcrumb">
+				<li><a href="#">首页</a></li>
+				<li class="active">人才招聘</li>
+			</ol>
+			<!-- 左边内容 -->
+			<div class="col-md-2 col-xs-12 dtab default">
+				<div class="btn-group-vertical" style="width: 100%;">
+					<button type="button" class="btn btn-default"> <a href="#">{{labelData.title}}</a></button>
+				</div>
+				<div id="sui_nav" class="sui-nav .hide-in-horizontal">
+					<div class="sui-nav-wrapper nav-border nav-line">
+					    <ul>
+					        <li class=" ">
+								<a onclick="window.location.href='/#''">PE阳光板</a>
+							</li>
+							<li class=" ">
+								<a onclick="window.location.href='/#''">PP中空板</a>
+								<span>+</span>
+								<ul>
+									<li>
+										<a onclick="window.location.href='/#'">中空板周转箱</a>
+									</li>
+								</ul>
+								<ul>
+									<li>
+										<a onclick="window.location.href='/#'">工业专用中空板</a>
+									</li>
+								</ul>
+								<ul>
+									<li>
+										<a onclick="window.location.href='/#'">导电中空板</a>
+									</li>
+								</ul>
+								<ul>
+									<li>
+										<a onclick="window.location.href='/index.php?c=cat&amp;id=32'"> 中空板广告板</a>
+									</li>
+								</ul>
+								<ul>
+									<li>
+										<a onclick="window.location.href='/index.php?c=cat&amp;id=34'">货架中空板隔板</a>
+									</li>
+								</ul>
+								<ul>
+									<li>
+										<a onclick="window.location.href='/#'">冰箱中空板底板</a>
+									</li>
+								</ul>
+								<ul>
+									<li>
+										<a onclick="window.location.href='/#'">中空板刀卡</a>
+									</li>
+								</ul>
+								<ul>
+									<li>
+										<a onclick="window.location.href='/#'">中空板水果箱</a>
+									</li>
+								</ul>
+							</li>
+							<li id="50" class=" ">
+								<a onclick="window.location.href='/#'">EU周转箱</a>
+							</li>
+							<li id="52" class=" ">
+								<a onclick="window.location.href='/#'">内材（EVA  珍珠棉等）</a>
+							</li>
+							<li id="54" class=" ">
+								<a onclick="window.location.href='/#'">苹果冷库仓储铁框</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div id="pc-screen">
+					<div class="container">
+						<div class="row">
+							<div class="col-md-2 default">
+								<div class="col-md-12 default ">
+									<img src="images/pic1.jpg" width="100%" height="90">
+								</div>
+								<div class="col-md-12 default">
+									<a href="#" class="name" title="冷库仓储笼隔板"><h5 style="font-weight: bold;line-height: 35px;text-align: left;overflow: hidden;">冷库仓储笼隔板</h5></a>
+								</div>
+								<a href="#" class="cp_more"> 
+									<div class="col-md-12 default" style=" height: 80px;overflow: hidden; font-size: smaller;margin-bottom: 15px; line-height: 20px; "> 水果冷库冷藏围板：水果冷库冷藏围板也叫冷库冷藏围板、水果冷藏围板、苹果冷藏围板，实际上是中空板围板中的一种，中空板围板因其中加入抗氧化剂和紫外线吸收剂，能更长时间的保持水果的新鲜度从而让水果不过早腐烂掉，而受到广大果农和蔬果批发商的一致认可。</div>
+								</a>
+								<div class="col-md-12 default ">
+									<img src="images/pic1.jpg" width="100%" height="90">
+								</div>
+								<div class="col-md-12 default">
+									<a href="#" class="name" title="PP中空板">
+										<h5 style="font-weight: bold;line-height: 35px;text-align: left;overflow: hidden;">PP中空板</h5>
+									</a> 
+								</div>
+								<a href="#" class="cp_more"> 
+									<div class="col-md-12 default" style=" height: 80px;overflow: hidden; font-size: smaller;margin-bottom: 15px; line-height: 20px; "> PP中空板(polypropylene hollow sheet)是聚丙烯原料掺合聚乙烯原料经过中空板生产线挤出成型，板材的截面为格子形状，因此也叫格子中空板。
+									</div>
+								</a>
+								<div class="col-md-12 default" style=" font-size: 19px; color: #0f8f3a; font-weight: bold;">招商热线：</div>
+								<div class="col-md-12 default" style="font-size: 22px;color:#0f8f3a">
+									<span class="glyphicon glyphicon-phone-alt"></span>400663232
+								</div>
+								<div class="col-md-12 default">
+									<img src="images/er.jpg" width="100%">
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- 左边内容 end -->
+			
+			<!-- 右边内容 -->
+			<div class="col-md-10 col-xs-12 mainproduct">
+				<div class="product" v-for="(item,index) in rightCntData" :key="index">
+					<div class="col-md-3 productleft">
+						<a href="#" class="dlink">
+							<center><img :src="item.imgUrl"></center>
+						</a>
+					</div>
+					<div class="col-md-9 productright">
+						<a href="#" class="dlink" ><h4>{{item.title}}</h4></a>
+						<a href="#" class="dlink avoidOverflow3">
+							<p>{{item.infor}}</p>
+						</a>
+					</div>
+				</div>
+				
+				<!-- 公共页脚 -->
+				<center>
+					<nav>
+						<ul class="pagination pagination-sm">
+							<li>
+								<span>共:{{allPages}}页</span>
+							</li>
+							<li><span class="prev" data-type="back" @click="changePage">上一页</span></li>
+							<li>
+								<template v-for="item in pageArray">
+									<span :class="item == paginate.currentPage?'current':''" :data-page="item" @click="linkTo">{{item}}</span>
+								</template>
+							</li>
+							<li><span class="next" data-type="next" @click="changePage">下一页</span></li>
+						</ul>
+					</nav>
+				</center>
+				<!-- 公共页脚 end -->
+			</div>
+			<!-- 右边内容 end -->
+			
+			<div class="col-md-10 col-xs-12 mainproduct r-xqcontbox" v-if="currentUrl=='/aboutUs.html'">
+				<p><img src="images/about1.jpg" alt=""></p>
+				<p>陕西广腾达工贸有限公司，坐落于陕西省西咸新区，已通过ISO9001质量管理体系认证，具有先进的计量手段和严格的质量管理制度，依靠科技人才，科学管理，先进的技术，多元化产品及良好的服务，树立自己的企业形象。是诸多同行业生产厂家中，起步早、技术力量雄厚、有专业化研发团队的企业集团。公司具有先进的管理模式，及一流的售后跟踪服务。产品广泛用于电子信息业、汽车的制造业、光电企业、机械业、轻工业、邮政、食品、医药、家电、广告装潢、文化用品等行业的产品销售包装、邮政包装等。</p>
+				<p>陕西广腾达工贸有限公司是一家国内专业化的塑料中空板制品企业，公司成立于2016年，专业生产全系列材质性能的PP中空板（万通板、PP瓦楞板、PP蜂窝板、塑料中空板）与PE中空板（PE万通板，PE双层保温膜，PE阳光板，PE采光板）；产品如：PP中空板，封边中空板（胶条封边或热熔封边），玻璃瓶中空板垫板、玻璃瓶中空板托盘，中空板周转箱, 中空板折叠箱，中空板托盘，中空板刀卡，中空板广告板，中空板盒子，防静电中空板,导电中空板,阻燃中空板，抗静电中空板，万通板,塑料瓦楞中空板，塑胶中空板,塑料板，静电处理中空板（电晕中空板，高频中空板）等等一系列塑料中空板产品。高质量低成本。欢迎来电咨询，谢谢！</p>
+				<p>
+					陕西广腾达工贸有限公司<br/>
+					电话：029-33577183<br/>
+					手机：13689184930  18191142910<br/>
+					传真：029-335577182<br/>
+					E-mail：zxj58838@qq.com<br/>
+					网址：www.gtdsuliao.com<br/>
+					公司地址：陕西省西咸新区沣东新城沣东街道办事处黄家寨村铁道北<br/>
+				</p>
+				
+			</div>
+			
+			
+		</div>
+			
+	</div>
+
+</div>
+
+
+<script type="text/javascript">
+	var contentOne_app = new Vue({
+	    el: '#contentOne_app',
+	    data:function(){
+	        return {
+	        	banner_index:0,
+	        	is_toggle:false,
+				is_show:false,
+				contentData:[],
+				labelData:{
+					title:"新闻中心"
+				},
+				rightCntData:[
+					{
+						imgUrl:"images/about2.jpg",
+						title:"人才招聘",
+						infor:"本公司激励机制：奖励激励，在职股激励，股份激励，合作激励等机制健全。为有梦想的人才，提供无限的发展空间。欢迎加入本公司！"
+					},
+					{
+						imgUrl:"images/tur.jpg",
+						title:"PP中空板",
+						infor:"PP中空板(polypropylene hollow sheet)是聚丙烯原料掺合聚乙烯原料经过中空板生产线挤出成型，板材的截面为格子形状，因此也叫格子中空板。"
+					},
+					{
+						imgUrl:"images/index-banner1.jpg",
+						title:"行业专用中空板包装箱的特点介绍",
+						infor:"行业专用中空板包装箱是一种重量轻，行业专用中空板包装箱空心结构、无毒、无污染、防水、防震、抗老化、耐腐蚀、颜色丰富的新型材料..."
+					}
+				],
+					
+				allPages:'',
+				pageArray:[],
+				o_paginate:{
+					count: 0, 
+				    currentPage: 1, 
+				    pagesize:10, 
+				    is_page: true, 
+				},
+				paginate: { 
+				    count: 0, 
+				    currentPage: 1, 
+				    pagesize:10, 
+				    is_page: true, 
+				},
+				currentId:0,
+				currentIndex:0,
+				currentTitle:'',
+				currentUrl:''
+
+	        }
+	    },
+		created:function () {
+		    var self = this;
+		    var currentUrl = window.base.GetUrlRelativePath();
+		
+			var reg = /\/([^\/]+)\.html/i;
+			if(reg.exec(currentUrl)&&reg.exec(currentUrl)[0]){
+				self.currentUrl = reg.exec(currentUrl)[0];
+			}else{
+				self.currentUrl = '/index.html';
+			};
+			console.log('self.currentUrl',self.currentUrl)
+			//window.base.bus.$emit('from_contentTwo',{});
+			window.base.bus.$on('to_contentTwo',(res)=>{
+			console.log('to_contentTwo',res)	
+		    	this.to_contentTwo(res);
+		    });
+		},
+	    methods: {
+
+	    	labelChange:function(id,index){
+	    		var self = this;
+	    		self.currentId = id;
+	    		self.currentIndex = index;
+	    		self.currentTitle = self.labelData['child'][index].title;
+	    		self.getMainData(true)
+	    	},
+
+	    	to_contentOne:function(res){
+	    		var self = this;
+	    		if(res.labelData){
+	        		self.labelData = res.labelData;
+	        		self.currentId = self.labelData['child'][0].id;
+	        		self.currentTitle = self.labelData['child'][0].title;
+	        		self.getMainData()
+	        	};
+	        	if(res.paginate){
+	        		self.o_paginate = res.paginate;
+	        		self.paginate = self.o_paginate;
+	        	};
+	    	},
+
+			getMainData: function(isNew){
+			    var self = this;
+			    if(isNew){
+			    	self.paginate = self.o_paginate;
+			    	self.contentData = [];
+			    };
+			    var postData = {};
+			    postData.paginate = window.base.cloneForm(self.paginate);
+		    	postData.searchItem = {
+			    	thirdapp_id:2,
+			    	menu_id:self.currentId
+			    };
+			    var callback = function(res) { 
+			        self.contentData.push.apply(self.contentData,res.info.data);
+			        self.paginate['count'] = res.info.total;
+			        window.base.computePageArr(self);
+			    };
+			    window.base.articleList(postData, callback);
+			},
+	        
+	    	changePage:function(e) {
+				var self = this;
+				var dataSet = window.base.getDataSet(e);
+				window.base.changePage(dataSet, self);
+				self.getMainData(true);
+			},
+
+			linkTo:function(e) {
+				var self = this;
+				console.log(e);
+				self.linkPage = window.base.getDataSet(e).page;
+				var res = window.base.linkTo(self);
+				if(res){
+					self.getMainData(true);
+				};	
+			},
+	
+	    }
+	});
+</script>

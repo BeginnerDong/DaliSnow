@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="renderer" content="webkit">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<meta name="description" content="">
+		<meta name="keywords" content="">
+		<title>案例展示</title>
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="css/style.css">
+		<link rel="stylesheet" type="text/css" href="css/sui.nav.css">
+		<script src="./js/vue.js"></script>
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<script type="text/javascript" src="js/include.js"></script>
+		<script type="text/javascript" src="js/bootstrap.min.js"></script>
+		
+	</head>
+<body>
+	
+	<body>	
+		<div id="app" >
+			<!-- 网站导航 -->
+			<div class="pubHeader" >
+				<include src="header.html"></include>
+			</div>
+			
+			<div style="min-height: 30%">
+				<div id="contentOne_app" style="padding-bottom: 30px;">
+					<div class="container pubcontlis" style="min-height: 70%;" >
+						<div class="row">
+							<include src="leftNav.html"></include>
+							<include src="rightContLis.html"></include>
+						</div>
+					</div>
+				</div>	
+				<!-- <include src="contentOne.html"></include> -->
+			</div>
+			<include src="footer.html"></include>
+		 </div>
+	</body>	
+	<script>
+		$(function(){
+			$(".sui-nav ul > li").click(function(){
+				console.log(111)
+			})
+		})
+	</script>
+	<script type="text/javascript">
+		var app = new Vue({
+		    el: '#app',
+		    data:function(){
+		        return {
+					mainData: [],
+					labelData: [],
+					paginate: { 
+					    count: 0, 
+					    currentPage: 1, 
+					    pagesize:1, 
+					    is_page: true, 
+					},
+					searchItem:{ 
+						thirdapp_id: 2,
+						title:['in',['新闻中心','人才招聘','案例展示']],
+					},
+					高考体育轮播:[],
+					高考体育:[],
+					newsData:[],	
+					currentId:''
+		        }
+		    },
+		    created:function () {
+		        var self = this;
+		        window.base.bus.$emit('to_contentOne',{paginate:self.paginate});
+				self.getMainData();	
+		    },
+		    methods: {
+		    	  
+				getMainData: function(id){
+				    var self = this;
+				    var postData = {};
+				    //postData.paginate = window.base.cloneForm(self.paginate);
+				    postData.searchItem = window.base.cloneForm(self.searchItem);
+					/*postData.getBefore ={
+					 	caseData:{
+							tableName:'Label',
+							searchItem:{
+							  parentid:['in',[146]]
+							},
+							middleKey:'menu_id',
+							key:'id',
+							condition:'in',
+						},
+					};*/
+					postData.getAfter = {
+						child: {
+							tableName: 'Label',
+							middleKey: 'id',
+							key: 'parentid',
+							searchItem: {
+								status: 1,
+							},
+							condition: '='
+						},
+					};
+				    var callback = function(res){
+				        self.mainData.push.apply(self.mainData,res.info.data);
+				        for (var i = 0; i < self.mainData.length; i++) {
+				        	self[self.mainData[i].title] = self.mainData[i];
+				        };
+				        window.base.bus.$emit('to_contentOne',{labelData:self['高考体育']});
+				    };
+				    window.base.labelGet(postData, callback);
+				},
+				
+		    }
+		});
+	</script>
+</html>

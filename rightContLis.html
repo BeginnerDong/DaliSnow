@@ -1,0 +1,172 @@
+
+	
+			<!-- 右边内容 -->
+			<div class="col-md-10 col-xs-12 mainproduct">
+				<div class="product" v-for="(item,index) in rightCntData" :key="index">
+					<div class="col-md-3 productleft">
+						<a href="#" class="dlink">
+							<center><img :src="item.imgUrl"></center>
+						</a>
+					</div>
+					<div class="col-md-9 productright">
+						<a href="#" class="dlink" ><h4>{{item.title}}</h4></a>
+						<a href="#" class="dlink avoidOverflow3">
+							<p>{{item.infor}}</p>
+						</a>
+					</div>
+				</div>
+				
+				<!-- 公共页脚 -->
+				<center>
+					<nav>
+						<ul class="pagination pagination-sm">
+							<li>
+								<span>共:{{allPages}}页</span>
+							</li>
+							<li><span class="prev" data-type="back" @click="changePage">上一页</span></li>
+							<li>
+								<template v-for="item in pageArray">
+									<span :class="item == paginate.currentPage?'current':''" :data-page="item" @click="linkTo">{{item}}</span>
+								</template>
+							</li>
+							<li><span class="next" data-type="next" @click="changePage">下一页</span></li>
+						</ul>
+					</nav>
+				</center>
+				<!-- 公共页脚 end -->
+			</div>
+			<!-- 右边内容 end -->
+			
+
+<script type="text/javascript">
+	var contentOne_app = new Vue({
+	    el: '#contentOne_app',
+	    data:function(){
+	        return {
+	        	banner_index:0,
+	        	is_toggle:false,
+				is_show:false,
+				contentData:[],
+				labelData:{
+					title:"新闻中心"
+				},
+				rightCntData:[
+					{
+						imgUrl:"images/about2.jpg",
+						title:"人才招聘",
+						infor:"本公司激励机制：奖励激励，在职股激励，股份激励，合作激励等机制健全。为有梦想的人才，提供无限的发展空间。欢迎加入本公司！"
+					},
+					{
+						imgUrl:"images/tur.jpg",
+						title:"PP中空板",
+						infor:"PP中空板(polypropylene hollow sheet)是聚丙烯原料掺合聚乙烯原料经过中空板生产线挤出成型，板材的截面为格子形状，因此也叫格子中空板。"
+					},
+					{
+						imgUrl:"images/index-banner1.jpg",
+						title:"行业专用中空板包装箱的特点介绍",
+						infor:"行业专用中空板包装箱是一种重量轻，行业专用中空板包装箱空心结构、无毒、无污染、防水、防震、抗老化、耐腐蚀、颜色丰富的新型材料..."
+					}
+				],
+					
+				allPages:'',
+				pageArray:[],
+				o_paginate:{
+					count: 0, 
+				    currentPage: 1, 
+				    pagesize:10, 
+				    is_page: true, 
+				},
+				paginate: { 
+				    count: 0, 
+				    currentPage: 1, 
+				    pagesize:10, 
+				    is_page: true, 
+				},
+				currentId:0,
+				currentIndex:0,
+				currentTitle:'',
+				currentUrl:''
+
+	        }
+	    },
+		created:function () {
+		    var self = this;
+		    var currentUrl = window.base.GetUrlRelativePath();
+		
+			var reg = /\/([^\/]+)\.html/i;
+			if(reg.exec(currentUrl)&&reg.exec(currentUrl)[0]){
+				self.currentUrl = reg.exec(currentUrl)[0];
+			}else{
+				self.currentUrl = '/index.html';
+			};
+			console.log('self.currentUrl',self.currentUrl)
+			//window.base.bus.$emit('from_contentTwo',{});
+			window.base.bus.$on('to_contentTwo',(res)=>{
+			console.log('to_contentTwo',res)	
+		    	this.to_contentTwo(res);
+		    });
+		},
+	    methods: {
+
+	    	labelChange:function(id,index){
+	    		var self = this;
+	    		self.currentId = id;
+	    		self.currentIndex = index;
+	    		self.currentTitle = self.labelData['child'][index].title;
+	    		self.getMainData(true)
+	    	},
+
+	    	to_contentOne:function(res){
+	    		var self = this;
+	    		if(res.labelData){
+	        		self.labelData = res.labelData;
+	        		self.currentId = self.labelData['child'][0].id;
+	        		self.currentTitle = self.labelData['child'][0].title;
+	        		self.getMainData()
+	        	};
+	        	if(res.paginate){
+	        		self.o_paginate = res.paginate;
+	        		self.paginate = self.o_paginate;
+	        	};
+	    	},
+
+			getMainData: function(isNew){
+			    var self = this;
+			    if(isNew){
+			    	self.paginate = self.o_paginate;
+			    	self.contentData = [];
+			    };
+			    var postData = {};
+			    postData.paginate = window.base.cloneForm(self.paginate);
+		    	postData.searchItem = {
+			    	thirdapp_id:2,
+			    	menu_id:self.currentId
+			    };
+			    var callback = function(res) { 
+			        self.contentData.push.apply(self.contentData,res.info.data);
+			        self.paginate['count'] = res.info.total;
+			        window.base.computePageArr(self);
+			    };
+			    window.base.articleList(postData, callback);
+			},
+	        
+	    	changePage:function(e) {
+				var self = this;
+				var dataSet = window.base.getDataSet(e);
+				window.base.changePage(dataSet, self);
+				self.getMainData(true);
+			},
+
+			linkTo:function(e) {
+				var self = this;
+				console.log(e);
+				self.linkPage = window.base.getDataSet(e).page;
+				var res = window.base.linkTo(self);
+				if(res){
+					self.getMainData(true);
+				};	
+			},
+	
+	    }
+	});
+</script>

@@ -1,42 +1,22 @@
 
-	
-			<!-- 右边内容 -->
-			<div class="col-md-10 col-xs-12 mainproduct">
-				<div class="product" v-for="(item,index) in rightCntData" :key="index">
-					<div class="col-md-3 productleft">
-						<a :href="detailLink" class="dlink">
-							<center><img :src="item.imgUrl"></center>
-						</a>
-					</div>
-					<div class="col-md-9 productright">
-						<div class="dlink" ><h4>{{item.title}}</h4></div>
-						<a :href="detailLink" class="dlink avoidOverflow3">
-							<p>{{item.infor}}</p>
-						</a>
-					</div>
-				</div>
-				
-				<!-- 公共页脚 -->
-				<center>
-					<nav>
-						<ul class="pagination pagination-sm">
-							<li>
-								<span>共:{{allPages}}页</span>
-							</li>
-							<li><span class="prev" data-type="back" @click="changePage">上一页</span></li>
-							<li>
-								<template v-for="item in pageArray">
-									<span :class="item == paginate.currentPage?'current':''" :data-page="item" @click="linkTo">{{item}}</span>
-								</template>
-							</li>
-							<li><span class="next" data-type="next" @click="changePage">下一页</span></li>
-						</ul>
-					</nav>
-				</center>
-				<!-- 公共页脚 end -->
-			</div>
-			<!-- 右边内容 end -->
 			
+			<div class="col-md-10 col-xs-12 mainproduct r-xqcontbox">
+				<div style="text-align: center;">
+					<h2 class="title">冷库仓储框（铁框和围板）</h2>
+					<p class="create_time oh"><span class="fr">2017-01-10 18:29</span></p>
+				</div>
+				<hr/>
+				<p><img src="images/index-banner1.jpg"></p>
+				<p>陕西广腾达工贸有限公司是一家国内专业化的塑料万通板制品企业，专业生产全系列材质与性能的PP万通板（万通板，PP瓦楞板）与PE万通板（PE万通板，PE双层保温膜，PE阳光板，PE采光板）。</p>
+				<p>中空板（一种新型塑料包装材料）</p>
+				<p>1. 中空板，主要代替瓦楞纸板、木板、金属板等理想的环保材料；</p>
+				<p>2. 周转箱，零部件周转箱，食品周转箱，饮料周转箱，农药包装箱，精密仪器的内包装，电子元器件包装的垫板、隔板及运输存储周转箱等；</p>
+				<p>3. 工业用板，各种物品物件外包装保护，垫板、置物架、隔板、底板、交叉板等；</p>
+				<p>4. 电子工业包装。导电性包装制品主要使用在电子零部件之包装上，目的都是为了避免其它带电荷物品与其接触，造成零件因电荷摩擦产生火花损害。另外还有导电、抗静电性塑料板、周转箱等；</p>
+				<p>5. 广告装潢：展示牌，商品标识牌，广告牌、灯箱、橱窗造型等；</p>
+				<p><img src="images/about2.jpg" ></p>
+			</div>
+
 
 <script type="text/javascript">
 	var contentOne_app = new Vue({
@@ -47,27 +27,9 @@
 	        	is_toggle:false,
 				is_show:false,
 				contentData:[],
-				detailLink:"proDetail.html",
 				labelData:{
-					title:"新闻中心"
+					title:"详情"
 				},
-				rightCntData:[
-					{
-						imgUrl:"images/about2.jpg",
-						title:"人才招聘",
-						infor:"本公司激励机制：奖励激励，在职股激励，股份激励，合作激励等机制健全。为有梦想的人才，提供无限的发展空间。欢迎加入本公司！"
-					},
-					{
-						imgUrl:"images/tur.jpg",
-						title:"PP中空板",
-						infor:"PP中空板(polypropylene hollow sheet)是聚丙烯原料掺合聚乙烯原料经过中空板生产线挤出成型，板材的截面为格子形状，因此也叫格子中空板。"
-					},
-					{
-						imgUrl:"images/index-banner1.jpg",
-						title:"行业专用中空板包装箱的特点介绍",
-						infor:"行业专用中空板包装箱是一种重量轻，行业专用中空板包装箱空心结构、无毒、无污染、防水、防震、抗老化、耐腐蚀、颜色丰富的新型材料..."
-					}
-				],
 					
 				allPages:'',
 				pageArray:[],

@@ -10,17 +10,16 @@
 
 
 .sui-nav span{
-  
   text-align:center;
   display:inline-block;
   width:20px;
   height:20px;
-  border:1px solid #ccc;
-  border-radius:50%;
   font-size:19px;
   line-height:20px;
-  margin-left:75px;
-  color:#0029ff;
+  color:#999;
+	position: absolute;
+	top: 7px;
+	right: 10px;
 }
 
 
@@ -53,9 +52,15 @@
     cursor: pointer; }
     .sui-nav ul > li {
       line-height: 36px;
-      min-width: 140px; }
+      min-width: 140px; 
+			position: relative;
+		}
       .sui-nav ul > li > a {
-        padding: 0 20px; }
+        padding: 0 20px; 
+				width: 100%;
+				display: block;
+				box-sizing: border-box;
+			}
       .sui-nav ul > li span.indicator {
         position: absolute;
         color: #bababa;
@@ -84,6 +89,20 @@
   border-bottom: 1px solid #eee; }
 .sui-nav .nav-border.nav-line li:last-child {
   border-bottom: none; }
+.sui-nav ul > li > div{
+	padding-bottom: 10px;
+	width: 90%;
+	margin: 0 auto;
+}
+.sui-nav ul > li > div > ul{
+		border-bottom:1px solid #e8e8e8;
+		background: #f5f5f5;
+		width: 100%;
+		box-sizing:border-box;
+}
+.sui-nav ul > li > div > ul:last-child{
+	border-bottom:none;
+}
 .sui-nav li.active > ul {
   display: block; }
 @media (max-width: 768px) {

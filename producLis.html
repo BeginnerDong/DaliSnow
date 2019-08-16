@@ -5,35 +5,11 @@
 				<div class="newsbody">
 					<img src="images/xinbanner.jpg" width="100%">
 					<ul>
-						<div class="col-md-12  col-xs-12 dlink  cc" data-hipop="one-horizontal" attr-id="61">
+						<div class="col-md-12  col-xs-12 dlink  cc" data-hipop="one-horizontal" v-for="(item,index) in producLis">
 							<li class="col-md-12">
-								<a href="#">
-									<span class="newstitle">中空板平卡</span>
-									<span class="newstime">2017-01-10 18:29 </span> 
-								</a>
-							</li>
-						</div>
-						<div class="col-md-12  col-xs-12 dlink  cc" data-hipop="one-horizontal" attr-id="85">
-							<li class="col-md-12">
-								<a href="#">
-									<span class="newstitle">苹果冷库专用仓储框</span>
-									<span class="newstime">2018-06-30 12:21</span>
-								</a>
-							</li>
-						</div>
-						<div class="col-md-12  col-xs-12 dlink  cc" data-hipop="one-horizontal" attr-id="62">
-							<li class="col-md-12">
-								<a href="#">
-									<span class="newstitle">玻璃瓶中空板垫板</span>
-									<span class="newstime">2017-01-10 18:32</span>
-								</a>
-							</li>
-						</div>
-						<div class="col-md-12  col-xs-12 dlink  cc" data-hipop="one-horizontal" attr-id="60">
-							<li class="col-md-12">
-								<a href="#">
-									<span class="newstitle">中空板圆盘</span>
-									<span class="newstime">2017-01-10 18:28</span>
+								<a :href="item.url">
+									<span class="newstitle">{{item.title}}</span>
+									<span class="newstime">{{item.proTime}}</span> 
 								</a>
 							</li>
 						</div>
@@ -71,6 +47,28 @@
 	        	is_toggle:false,
 				is_show:false,
 				contentData:[],
+				producLis:[
+					{
+						url:"proDetail.html",
+						title:"中空板平卡",
+						proTime:"2019-08-16 18:28"
+					},
+					{
+						url:"proDetail.html",
+						title:"苹果冷库专用仓储框",
+						proTime:"2019-08-16 18:28"
+					},
+					{
+						url:"proDetail.html",
+						title:"玻璃瓶中空板垫板",
+						proTime:"2019-08-16 18:28"
+					},
+					{
+						url:"proDetail.html",
+						title:"中空板圆盘",
+						proTime:"2019-08-16 18:28"
+					}
+				],
 				labelData:{
 					title:"新闻中心"
 				},

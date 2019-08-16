@@ -7,7 +7,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 		<meta name="description" content="">
 		<meta name="keywords" content="">
-		<title>案例展示</title>
+		<title>详情</title>
 		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
 		<link rel="stylesheet" type="text/css" href="css/style.css">
 		<link rel="stylesheet" type="text/css" href="css/sui.nav.css">
@@ -31,15 +31,22 @@
 					<div class="container pubcontlis" style="min-height: 70%;" >
 						<div class="row">
 							<include src="leftNav.html"></include>
-							<include src="rightContLis.html"></include>
+							<include src="contentDetail.html"></include>
 						</div>
 					</div>
-				</div>	
+				</div>
 				<!-- <include src="contentOne.html"></include> -->
 			</div>
 			<include src="footer.html"></include>
 		 </div>
 	</body>	
+	<script type="text/javascript">
+		$(function(){
+			$(".sui-nav .nav-border.nav-line li").click(function(){
+				alert(000)
+			})
+		})
+	</script>
 	<script type="text/javascript">
 		var app = new Vue({
 		    el: '#app',
@@ -57,8 +64,6 @@
 						thirdapp_id: 2,
 						title:['in',['新闻中心','人才招聘','案例展示']],
 					},
-					高考体育轮播:[],
-					高考体育:[],
 					newsData:[],	
 					currentId:''
 		        }

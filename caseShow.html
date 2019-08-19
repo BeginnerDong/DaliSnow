@@ -30,7 +30,7 @@
 				<div id="contentOne_app" style="padding-bottom: 30px;">
 					<div class="container pubcontlis" style="min-height: 70%;" >
 						<div class="row">
-							<include src="leftNav.html"></include>
+							
 							<include src="rightContLis.html"></include>
 						</div>
 					</div>
@@ -65,8 +65,11 @@
 		    },
 		    created:function () {
 		        var self = this;
-		        window.base.bus.$emit('to_contentOne',{paginate:self.paginate});
-				self.getMainData();	
+				
+				window.onload=function(){
+					window.base.bus.$emit('to_rightContlis',{title:'案例展示'});
+				};
+				//self.getMainData();	
 		    },
 		    methods: {
 		    	  

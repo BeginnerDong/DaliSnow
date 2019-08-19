@@ -142,7 +142,7 @@
 		created:function () {
 		    var self = this;
 		    var currentUrl = window.base.GetUrlRelativePath();
-		
+			console.log(currentUrl)
 			var reg = /\/([^\/]+)\.html/i;
 			if(reg.exec(currentUrl)&&reg.exec(currentUrl)[0]){
 				self.currentUrl = reg.exec(currentUrl)[0];

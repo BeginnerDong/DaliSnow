@@ -13,8 +13,8 @@
 		<link rel="stylesheet" type="text/css" href="css/sui.nav.css">
 		<script src="./js/vue.js"></script>
 		<script type="text/javascript" src="js/jquery.min.js"></script>
-		<script type="text/javascript" src="js/include.js"></script>
 		<script type="text/javascript" src="js/base.js"></script>
+		<script type="text/javascript" src="js/include.js"></script>
 		<script type="text/javascript" src="js/bootstrap.min.js"></script>
 	</head>
 <body>
@@ -30,12 +30,13 @@
 				<div id="contentOne_app" style="padding-bottom: 30px;">
 					<div class="container pubcontlis" style="min-height: 70%;" >
 						<div class="row">
-							<include src="leftNav.html"></include>
+							<!-- <include src="leftNav.html"></include> -->
 							<include src="rightContLis.html"></include>
 						</div>
 					</div>
 				</div>
 			</div>
+			
 			<include src="footer.html"></include>
 		 </div>
 	</body>	
@@ -56,18 +57,25 @@
 						thirdapp_id: 2,
 						title:['in',['新闻中心','人才招聘','案例展示']],
 					},
-					高考体育轮播:[],
-					高考体育:[],
+				
 					newsData:[],	
 					currentId:''
 		        }
 		    },
-		    created:function () {
+		    mounted:function () {
 		        var self = this;
-		        window.base.bus.$emit('to_contentOne',{paginate:self.paginate});
-				self.getMainData();	
+				console.log(552635);
+				window.onload=function(){ 
+					window.base.bus.$emit('to_rightContlis',{title:'新闻中心'}); 
+				};
+		        
+				//self.getMainData();	
 		    },
 		    methods: {
+				
+				test(){
+					window.base.bus.$emit('to_rightContlis',{title:'新闻中心'});
+				},
 		    	  
 				getMainData: function(id){
 				    var self = this;

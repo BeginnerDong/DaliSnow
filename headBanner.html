@@ -28,11 +28,14 @@
 	        	banner_index:0,
 	        	is_toggle:false,
 				is_show:false,
-				bannerData:[],
+				bannerData:[
+					
+				],
 				searchItem:{
 					thirdapp_id:window.base.thirdapp_id,
 					title:''
 				},
+				
 				herfIndex:{
 					'/index.html':'首页轮播',
 					'/ceeSport.html':'高考体育轮播',
@@ -57,18 +60,17 @@
 			}else{
 				self.currentUrl = '/index.html';
 			};
-			self.searchItem.title = self.herfIndex[self.currentUrl];
+			
 
 			//window.base.bus.$emit('from_headBanner',{});
     		window.base.bus.$on('to_headBanner',(res)=>{	
-	        	this.to_headBanner(res);
+				self.searchItem.title = res.title;
+	        	this.getMainData(res.title);
 		    });
-			self.getMainData()	
+				
 	    },
 	    methods: {
-	    	to_headBanner:function(){
-
-	    	},
+	    	
 
 
 	    	getMainData: function(id){

@@ -40,30 +40,15 @@
             <h2>工厂简介</h2> </div>
         <hr>
         <div class="container">
-            <div class="col-md-4 default snapshot-height">
+            <div class="col-md-4 default snapshot-height" v-for="item in gcData"  @click="toDetail(item.id)">
                 <div class="col-md-12 snapshot-img ">
-                    <img src="images/about1.jpg " />
+                    <img :src="item.mainImg&&item.mainImg[0]?item.mainImg[0].url:''" />
                 </div>
                 <div class="col-md-12 snapshot-text">
-                    <p>大理雪域印象生物科技有限公司，专业从事高原特色有机产品的研发、生产及销售，用纯天然的产品改善国人健康，提高生活品质。公司位于云南省大理州大理经济开发区，拥有花园式的厂房，生产车间严格按照GMP标准建造，实行人、物分流，拥有现代化</p>
+                    <p>{{item.description}}</p>
                 </div>
             </div>
-            <div class="col-md-4 default snapshot-height">
-                <div class="col-md-12 snapshot-img">
-                    <img src="images/about3.jpg" alt="35:19"/>
-                </div>
-                <div class="col-md-12 snapshot-text">
-                    <p>大理雪域印象生物科技有限公司自成立以来，立足于高新科技领域，利用已有的强大科研力量、健全的科研体系、现代化整合营销管理方式以及庞大的市场营销网络，形成了研发销售一条龙的整体格局，公司在全国多个省市建立了办事机构，为后续产品的</p>
-                </div>
-            </div>
-            <div class="col-md-4 default snapshot-height">
-                <div class="col-md-12 snapshot-img ">
-                    <img src="images/about2.jpg " />
-                </div>
-                <div class="col-md-12 snapshot-text">
-                    <p> 大理雪域印象生物科技有限公司目前产品主要有“南诏香格里拉”婴幼儿孕产妇核桃油系列产品。产品上市后均赢得了广大用户的称赞，并在行业内树立了良好的企业形象和品牌知名度。公司秉承以人类健康服务为宗旨，为人类健康谋福。</p>
-                </div>
-            </div>
+            
         </div>
         <hr>
     </div>
@@ -77,10 +62,10 @@
         <hr>
         <div class="container  utterance-body">
             <div class="col-md-5  utterance-img">
-                <img src="images/utterance.jpg " alt="445*225.5">
+                <img :src="wordData.mainImg&&wordData.mainImg[0]?wordData.mainImg[0].url:''" alt="445*225.5">
             </div>
             <div class="col-md-7  utterance-text">
-                <p>大理雪域印象生物科技有限公司位于云南省大理经济开发区，独特的自然环境资源为公司开发研制野珍山果并精加工创造了良好的条件。公司一直致力于野生山核桃的研制与开发，并成为集开发、研究，加工生产，保鲜贮藏、市场销售为一体的食品企业。我们也诚心邀请更多具有雄厚实力、拥有优质资源的国内外同仁成为合作伙伴，致力于企业长期稳定发展，创造多方共赢的新局面。以人类健康服务为宗旨，为人类健康谋福！</p>
+                <p>{{wordData.description}}</p>
             </div>
         </div>
         <hr>
@@ -93,19 +78,19 @@
 		</div>
 	<hr>  
 	<div class="container">
-		<div class="row">
+		<div class="row" v-for="item in nutritionData"  @click="toDetail(item.id)">
 			<div class="col-md-7">
 				<div class="knowledge-index-title ">
-					<h4>行业专用中空板包装箱的特点介绍</h4>
+					<h4>{{item.title}}</h4>
 				</div>
 				<div class="knowledge-index-body ">
 					<a :href="detailLink"  style="text-decoration: none">  
-						<p>行业专用中空板包装箱是一种重量轻，行业专用中空板包装箱空心结构、无毒、无污染、防水、防震、抗老化、耐腐蚀、颜色丰富的新型材料，相比于纸板结构产品，中空板具有防潮、抗腐蚀等优势。</p>
+						<p>{{item.description}}</p>
 					</a>
 				</div>
 			</div>
 			<div class="col-md-5 knowledge-index-img">
-				<img src="images/utterance.jpg " alt="360*180">
+				<img :src="item.mainImg&&item.mainImg[0]?item.mainImg[0].url:''" alt="360*180">
 			</div>
 		</div>
     </div>
@@ -119,45 +104,16 @@
 		</div>
 		<hr>
 		<div class="container">
-			<div class="row">
-				<div class="col-md-6">
+			<div class="row" v-for="item in newsData" @click="toDetail(item.id)">
+				<div class="col-md-6" >
 					<div class="news-index-title" >
-						<a :href="detailLink"  style="text-decoration: none"> <h4>PP中空板</h4></a>
+						<a   style="text-decoration: none"> <h4>{{item.title}}</h4></a>
 					</div>
 					<div class="news-index-body">
-						<a :href="detailLink"  style="text-decoration: none">  <p>PP中空板(polypropylene hollow sheet)是聚丙烯原料掺合聚乙烯原料经过中空板生产线挤出成型，板材的截面为格子形状，因此也叫格子中空板。</p></a>
+						<a   style="text-decoration: none">  <p>{{item.description}}</p></a>
 					</div>
 				</div>
-				<div class="col-md-6">
-					<div class="news-index-title" >
-						<a :href="detailLink"  style="text-decoration: none"> <h4>冷库仓储笼隔板（果围板）</h4></a>
-					</div>
-					<div class="news-index-body">
-						<a :href="detailLink"  style="text-decoration: none">  
-							<p>陕西广腾达工贸有限公司是一家国内专业化的塑料万通板制品企业，专业生产全系列材质与性能的PP万通板（万通板，PP瓦楞板）与PE万通板（PE万通板，PE双层保温膜，PE阳光板，PE采光板）。 </p>
-						</a>
-					</div>
-				</div>
-				<div class="col-md-6">
-					<div class="news-index-title" >
-						<a :href="detailLink"  style="text-decoration: none"> <h4>中空板平卡</h4></a>
-					</div>
-					<div class="news-index-body">
-						<a :href="detailLink"  style="text-decoration: none">  
-							<p>良好的力学性能塑料中空板的特殊结构，使其具有韧性好，耐冲击，抗压强度高，缓冲防震，挺硬性高，弯曲性能良好等优良的力学性能。</p>
-						</a>
-					</div>
-				</div>
-				<div class="col-md-6">
-					<div class="news-index-title" >
-						<a :href="detailLink"  style="text-decoration: none"> <h4>农业专用PE阳光板</h4></a>
-					</div>
-					<div class="news-index-body">
-						<a :href="detailLink"  style="text-decoration: none">  
-							<p>采用国外先进的抗老化配方，使用寿命长，中间又有加强筋，不怕强风，不怕雪压，机械强度大，耐拉耐用，是一种 </p>
-						</a>
-					</div>
-				</div>
+				
 			</div>
 		</div>
 	</div>
@@ -165,12 +121,8 @@
 	<div class=" friends container">
         <h4> 友情链接...</h4>
         <div class="col-md-12">
-            <a class="col-md-2">图标</a>
-            <a class="col-md-2">wwww</a>
-            <a class="col-md-2">wwww</a>
-            <a class="col-md-2">wwww</a>
-            <a class="col-md-2">wwww</a>
-            <a class="col-md-2">wwww</a>
+            <a class="col-md-2" v-for="item in urlData">{{item.description}}</a>
+            
         </div>
     </div>
 
@@ -193,10 +145,13 @@
 		        	banner_index:0,
 		        	is_toggle:false,
 					is_show:false,
-					
+					gcData:[],
+					wordData:{},
+					nutritionData:[],
 					wx_show:2,
 					mainData: [],
 					labelData: [],
+					urlData:[],
 					newsData:[],
 					detailLink:"proDetail.html",
 					paginate: { 
@@ -205,53 +160,135 @@
 					    pagesize:6, 
 					    is_page: true, 
 					},
-					searchItem:{ 
-						thirdapp_id: 2,
-						title:['in',['首页轮播','特色课程','校区介绍','优秀学员','我们的优势','视频展示','行业动态','友情链接','企业动态']]
-					},
-					首页轮播:[],
-					特色课程:[],
-					校区介绍:{},
-					优秀学员:[],
-					我们的优势:[],
-					视频展示:[],
-					友情链接:[],
-					企业动态:{},
-					行业动态:{},
-					e_data:[],
-					i_data:[],
-					bannerData:{
-						mainImg:['images/index-banner1.jpg','images/about2.jpg']
-					}
+					urlData:[]
+					
+				
 
 		        }
 		    },
 		    created:function () {
 		        var self = this;
-				self.getMainData();
+				self.getGcData();
+				self.getWordData();
+				self.getNutritionData();
+				self.getNewsData();
+				self.getUrlData();
 				// if(window.screen.width<760){
 				// 	self.slidesPerView = 3
 				// }
+				window.onload=function(){
+					window.base.bus.$emit('to_headBanner',{title:'轮播图'}); 
+				};
 		    },
 		    methods: {
+				
+				toDetail(id){
+					const self = this;
+					window.location.href = 'proDetail.html?id='+id
+				},
 		        
-				getMainData: function(id){
+				getGcData() {
+					var self = this;	
+					var postData = {};
+					postData.searchItem = {
+						thirdapp_id: 2,
+					};
+					postData.getBefore = {
+						article: {
+							tableName: 'Label',
+							searchItem: {
+								title: ['=', ['工厂简介']],
+							},
+							middleKey: 'menu_id',
+							key: 'id',
+							condition: 'in',
+						},
+					};
+					var callback = function(res) {
+						self.gcData.push.apply(self.gcData, res.info.data);
+						
+					};
+					window.base.articleGet(postData, callback);
+				},
+				
+				getNutritionData() {
+					var self = this;	
+					var postData = {};
+					postData.searchItem = {
+						thirdapp_id: 2,
+					};
+					postData.getBefore = {
+						article: {
+							tableName: 'Label',
+							searchItem: {
+								title: ['=', ['营养知识']],
+							},
+							middleKey: 'menu_id',
+							key: 'id',
+							condition: 'in',
+						},
+					};
+					var callback = function(res) {
+						self.nutritionData.push.apply(self.nutritionData, res.info.data);
+						
+					};
+					window.base.articleGet(postData, callback);
+				},
+				
+				getNewsData() {
+					var self = this;	
+					var postData = {};
+					postData.searchItem = {
+						thirdapp_id: 2,
+					};
+					postData.getBefore = {
+						article: {
+							tableName: 'Label',
+							searchItem: {
+								title: ['=', ['首页新闻中心']],
+							},
+							middleKey: 'menu_id',
+							key: 'id',
+							condition: 'in',
+						},
+					};
+					var callback = function(res) {
+						self.newsData.push.apply(self.newsData, res.info.data);
+						
+					};
+					window.base.articleGet(postData, callback);
+				},
+				
+				getWordData() {
+					var self = this;	
+					var postData = {};
+					postData.searchItem = {
+						thirdapp_id: 2,
+					};
+					postData.getBefore = {
+						article: {
+							tableName: 'Label',
+							searchItem: {
+								title: ['=', ['董事长寄语']],
+							},
+							middleKey: 'menu_id',
+							key: 'id',
+							condition: 'in',
+						},
+					};
+					var callback = function(res) {
+						self.wordData = res.info.data[0];
+						
+					};
+					window.base.articleGet(postData, callback);
+				},
+				
+				getUrlData(){
 				    var self = this;
 				    var postData = {};
-				    //postData.paginate = window.base.cloneForm(self.paginate);
-				    postData.searchItem = window.base.cloneForm(self.searchItem);
-					/*postData.getBefore ={
-					 	caseData:{
-							tableName:'Label',
-							searchItem:{
-							  parentid:['in',[146]]
-							},
-							middleKey:'menu_id',
-							key:'id',
-							condition:'in',
-						},
-					};*/
-
+				    postData.searchItem = {
+						title:'友情链接'
+					};
 					postData.getAfter = {
 						child: {
 							tableName: 'Label',
@@ -264,41 +301,14 @@
 						},
 					};
 				    var callback = function(res){
-				        console.log('getMainData', res);
-				        self.mainData.push.apply(self.mainData,res.info.data);
-				        for (var i = 0; i < self.mainData.length; i++) {
-				        	self[self.mainData[i].title] = self.mainData[i];
-				        };
-				        self.getNewsData()
+				        if(res.info.data.length>0&&res.info.data[0]['child']){
+							self.urlData =res.info.data[0]['child'];
+							console.log('self.urlData',self.urlData)
+				        };    
 				    };
-					console.log('self.mainData',self.mainData)
-				    // window.base.labelGet(postData, callback);
+				    window.base.labelGet(postData, callback);
 				},
 				
-				getNewsData: function(id){
-				    var self = this;
-				    var postData = {};
-				    postData.paginate = window.base.cloneForm(self.paginate);
-				    postData.searchItem = {
-				    	thirdapp_id:2,
-				    	menu_id:['in',[self['企业动态'].id,self['行业动态'].id]]
-				    };
-				    
-
-				    var callback = function(res) {
-				        
-				        self.newsData.push.apply(self.newsData,res.info.data)
-						for (var i = 0; i < self.newsData.length; i++) {
-							if(self.newsData[i].menu_id==self['企业动态'].id){
-								self.e_data.push(self.newsData[i]);
-							}else{
-								self.i_data.push(self.newsData[i]);
-							}
-						};
-						console.log('self.e_data',self.e_data)
-				    };
-				    // window.base.articleList(postData, callback);
-				},
 		    }
 		});
 	</script>

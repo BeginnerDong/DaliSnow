@@ -1,17 +1,77 @@
 
-	
+			<div class="col-md-12 default"> <img src="images/s-ban1.jpg" width="100%" height="100%"></div>
+			<ol class="breadcrumb">
+				<li><a href="#">首页</a></li>
+				<li class="active">{{title}}</li>
+			</ol>
+			<!-- 左边内容 -->
+			<div class="col-md-2 col-xs-12 dtab default">
+				<div class="btn-group-vertical" style="width: 100%;">
+					<button type="button" class="btn btn-default"> <a href="#">{{title}}</a></button>
+				</div>
+				<div id="sui_nav" class="sui-nav .hide-in-horizontal" style="padding-top: 10px;">
+					<div class="sui-nav-wrapper nav-border nav-line">
+					    <ul>
+							<li  v-for="(lis1,index) in lists" :key="index">
+								<a @click="changeLabel(lis1.id)">{{lis1.title}}</a>
+								<!-- <span>∨</span>
+								<div v-show="lis1.subShow">
+									<ul  v-for="child in lis1.sublis">
+										<li>
+											<a>{{child}}</a>
+										</li>
+									</ul>
+								</div> -->
+							</li>
+						</ul>
+					</div>
+				</div>
+			
+				<div id="pc-screen">
+					<div class="container">
+						<div class="row">
+							<div class="col-md-2 default">
+								<div v-for="item in hotData" @click="toDetail(item.id)">
+									<div class="col-md-12 default ">
+										<img :src="item.mianImg&&item.mainImg[0]?item.mainImg[0].url:''" width="100%" height="90">
+									</div>
+									<div class="col-md-12 default">
+										<h5 style="font-weight: bold;line-height: 35px;text-align: left;overflow: hidden;">{{item.title}}</h5>
+									</div>
+									<a :href="detailLink" class="cp_more"> 
+										<div class="col-md-12 default" style=" height: 80px;overflow: hidden; font-size: smaller;margin-bottom: 15px; line-height: 20px; ">
+											{{item.description}}
+										</div>
+									</a>
+								</div>
+								
+								
+								
+								
+								<div class="col-md-12 default" style=" font-size: 19px; color: #0f8f3a; font-weight: bold;">招商热线：</div>
+								<div class="col-md-12 default" style="font-size: 22px;color:#0f8f3a">
+									<img class="icon" src="images/phone.png" >400663232
+								</div>
+								<div class="col-md-12 default" style="padding-top: 10px;">
+									<img src="images/er.jpg" width="100%">
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
 			<!-- 右边内容 -->
 			<div class="col-md-10 col-xs-12 mainproduct">
-				<div class="product" v-for="(item,index) in rightCntData" :key="index">
+				<div class="product" v-for="(item,index) in contentData" :key="index" @click="toDetail(item.id)">
 					<div class="col-md-3 productleft">
-						<a :href="detailLink" class="dlink">
-							<center><img :src="item.imgUrl"></center>
+						<a  class="dlink">
+							<center><img :src="item.mainImg&&item.mainImg[0]?item.mainImg[0].url:''"></center>
 						</a>
 					</div>
 					<div class="col-md-9 productright">
 						<div class="dlink" ><h4>{{item.title}}</h4></div>
-						<a :href="detailLink" class="dlink avoidOverflow3">
-							<p>{{item.infor}}</p>
+						<a  class="dlink avoidOverflow3">
+							<p>{{item.description}}</p>
 						</a>
 					</div>
 				</div>
@@ -48,26 +108,13 @@
 				is_show:false,
 				contentData:[],
 				detailLink:"proDetail.html",
-				labelData:{
-					title:"新闻中心"
-				},
-				rightCntData:[
-					{
-						imgUrl:"images/about2.jpg",
-						title:"人才招聘",
-						infor:"本公司激励机制：奖励激励，在职股激励，股份激励，合作激励等机制健全。为有梦想的人才，提供无限的发展空间。欢迎加入本公司！"
-					},
-					{
-						imgUrl:"images/tur.jpg",
-						title:"PP中空板",
-						infor:"PP中空板(polypropylene hollow sheet)是聚丙烯原料掺合聚乙烯原料经过中空板生产线挤出成型，板材的截面为格子形状，因此也叫格子中空板。"
-					},
-					{
-						imgUrl:"images/index-banner1.jpg",
-						title:"行业专用中空板包装箱的特点介绍",
-						infor:"行业专用中空板包装箱是一种重量轻，行业专用中空板包装箱空心结构、无毒、无污染、防水、防震、抗老化、耐腐蚀、颜色丰富的新型材料..."
-					}
+				
+				title:'',
+				
+				lists:[
+					
 				],
+				hotData:[],
 					
 				allPages:'',
 				pageArray:[],
@@ -100,55 +147,96 @@
 			}else{
 				self.currentUrl = '/index.html';
 			};
-			console.log('self.currentUrl',self.currentUrl)
+			console.log('self.currentUrl0000',self.currentUrl)
 			//window.base.bus.$emit('from_contentTwo',{});
-			window.base.bus.$on('to_contentTwo',(res)=>{
-			console.log('to_contentTwo',res)	
-		    	this.to_contentTwo(res);
+			window.base.bus.$on('to_rightContlis',(res)=>{
+			console.log('to_rightContlis',res)	
+		    	self.getLabelData(res.title);
+				self.getHotData();
+				self.title = res.title
 		    });
 		},
 	    methods: {
-
-	    	labelChange:function(id,index){
+			
+			toDetail(id){
+				const self = this;
+				window.location.href = 'proDetail.html?id='+id
+			},
+			
+	    	getLabelData:function(title){
 	    		var self = this;
-	    		self.currentId = id;
-	    		self.currentIndex = index;
-	    		self.currentTitle = self.labelData['child'][index].title;
-	    		self.getMainData(true)
+	    		
+	    		var postData = {};
+	    	
+	    		postData.searchItem = {
+	    			thirdapp_id:2,
+	    			
+	    		};
+				postData.getBefore = {
+					article: {
+						tableName: 'Label',
+						searchItem: {
+							title: ['=', [title]],
+						},
+						middleKey: 'parentid',
+						key: 'id',
+						condition: 'in',
+					},
+				};
+	    		var callback = function(res) { 
+	    		    self.lists.push.apply(self.lists,res.info.data);
+					self.id = self.lists[0].id
+	    		    self.getMainData()
+	    		};
+	    		window.base.labelGet(postData, callback);	
 	    	},
 
-	    	to_contentOne:function(res){
-	    		var self = this;
-	    		if(res.labelData){
-	        		self.labelData = res.labelData;
-	        		self.currentId = self.labelData['child'][0].id;
-	        		self.currentTitle = self.labelData['child'][0].title;
-	        		self.getMainData()
-	        	};
-	        	if(res.paginate){
-	        		self.o_paginate = res.paginate;
-	        		self.paginate = self.o_paginate;
-	        	};
-	    	},
-
-			getMainData: function(isNew){
+			getHotData(){
 			    var self = this;
-			    if(isNew){
-			    	self.paginate = self.o_paginate;
-			    	self.contentData = [];
-			    };
+			    
 			    var postData = {};
-			    postData.paginate = window.base.cloneForm(self.paginate);
-		    	postData.searchItem = {
-			    	thirdapp_id:2,
-			    	menu_id:self.currentId
-			    };
+			    postData.paginate = {
+					count: 0,
+					currentPage: 1, 
+					pagesize:2, 
+					is_page: true, 
+				};
+				postData.order = {
+					listorder:'desc'
+				};
 			    var callback = function(res) { 
-			        self.contentData.push.apply(self.contentData,res.info.data);
-			        self.paginate['count'] = res.info.total;
-			        window.base.computePageArr(self);
+			        self.hotData.push.apply(self.hotData,res.info.data);
 			    };
 			    window.base.articleList(postData, callback);
+			},
+			
+			
+			getMainData: function(isNew) {
+				var self = this;
+				if (isNew) {
+					self.paginate = self.o_paginate;
+					self.contentData = [];
+				};
+				var postData = {};
+				postData.paginate = window.base.cloneForm(self.paginate);
+				postData.searchItem = {
+					thirdapp_id: 2,
+					menu_id: self.id
+				};
+				var callback = function(res) {
+					self.contentData.push.apply(self.contentData, res.info.data);
+					self.paginate['count'] = res.info.total;
+					window.base.computePageArr(self);
+				};
+				window.base.articleList(postData, callback);
+			},
+			
+			changeLabel(id){
+				const self = this;
+				if(self.id!=id){
+					self.id = id;
+					self.getMainData(true)
+				}	
 			},
 	        
 	    	changePage:function(e) {
